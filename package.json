@@ -1,0 +1,19 @@
+{
+	"name": "dynomix",
+	"version": "1.0.0",
+	"description": "Monitor Companion-connected vMix instances on the fly",
+	"main": "main.js",
+	"type": "module",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [
+		"vmix",
+		"companion"
+	],
+	"author": "bost-ty",
+	"license": "MIT",
+	"devDependencies": {
+		"typescript": "^5.6.2"
+	}
+}

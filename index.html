@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css" />
+
+		<title>TypeScript Baby</title>
+	</head>
+	<body>
+		<section style="display: flex; align-items: center; gap: .5rem;">
+			<h1>Dynomix</h1><small>...The wave of the future!</small>
+		</section>
+		<section id="controls">
+			<form autocomplete="off" id="inputs">
+				<label>Companion IP<input type="text" name="ip" id="ip" /></label>
+				<label>Companion port<input type="text" name="port" id="port" /></label>
+				<label>vMix name <input type="text" name="instance" id="instance" /></label>
+				<button id="submit">Fetch data!</button>
+			</form>
+		</section>
+		<section
+			id="content"
+			style="
+				margin-top: 2rem;
+				margin-bottom: 2rem;
+				padding: 1rem;
+				outline: 1px solid currentColor;
+				border-radius: 0.2rem;
+				outline-offset: 0.5em;
+			">
+			Fill out the form above to populate this area with vMix inputs.
+		</section>
+		<section id="help"></section>
+			<h2>Need help?</h2>
+			<h3>Companion IP</h3>
+			<p>
+				The IP address of the computer you're using
+				Companion on. You can get this from the Companion program running on the computer. If it's this computer, you can write <code>localhost</code>.
+			</p>
+			<h3>Companion port</h3>
+			<p>
+				The port that Companion is listening on. Companion defaults to
+				<code>8000</code>, but you can check the Companion program to be sure.
+			</p>
+			<h3>vMix name</h3>
+			<p>
+				The name of the vMix connection <em>inside of Companion</em>.
+				Check the <code>Connections</code> page of the Companion Web Interface!
+			</p>
+		</section>
+		<script src="main.js"></script>
+	</body>
+</html>
