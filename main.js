@@ -27,15 +27,48 @@ configForm.addEventListener("submit", async (e) => {
     qp.set("instance", instance);
     history.pushState(null, "", url);
     try {
-        content.textContent = "Fetching...";
+        // content.textContent = "Fetching...";
         const data = await fetchData(ip, port, instance, 2000);
-        content.textContent = data;
+        renderData(content, data);
     }
     catch (error) {
         content.textContent = error;
     }
 });
 //
+function renderData(content, data) {
+    content.innerHTML = "";
+    const ol = document.createElement("ol");
+    ol.id = "inputList";
+    content.appendChild(ol);
+    content.classList.add("populated");
+    data.forEach((input) => {
+        // const div = document.createElement("div");
+        // div.classList.add("listItem");
+        const title = input.title;
+        const key = input.key;
+        const li = document.createElement("li");
+        const dirty = `<button id="${key}-btn">Copy</button><label for="${key}" style="font-family: monospace;">
+				${title.length > 45
+            ? title
+            : // .slice(0, 39)
+                // .concat("...")
+                // .concat(title.slice(title.length - 3, title.length))
+                title}</label><input name="${key}" id="${key}" value="${key}" type="text" />
+			`;
+        //@ts-ignore
+        const clean = DOMPurify.sanitize(dirty);
+        li.innerHTML = clean;
+        ol.append(li);
+        if (document.getElementById(`${key}-btn`)) {
+            //@ts-ignore
+            document.getElementById(`${key}-btn`).onclick = async () => {
+                //@ts-ignore
+                await copyKey(key);
+            };
+        }
+    });
+}
 async function fetchData(ip, port, instance, timeoutMs) {
     if (!ip || !port || !instance)
         throw new Error(`Missing data`);
@@ -68,3 +101,19 @@ async function handleHttpResponse(response) {
     }
 }
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+async function copyKey(key) {
+    const self = document.getElementById(`${key}-btn`);
+    //@ts-ignore
+    const t = document.getElementById(key).value;
+    navigator.clipboard.writeText(t);
+    try {
+        self?.classList.add("recently-copied");
+        self?.classList.add("copied");
+        setTimeout(() => {
+            self?.classList.remove("recently-copied");
+        }, 5000);
+    }
+    catch (error) {
+        console.error("Couldn't copy key!");
+    }
+}

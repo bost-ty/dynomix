@@ -3,15 +3,21 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link
-			rel="stylesheet"
-			href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css" />
-
+		<link rel="stylesheet" href="./water.css" />
+		<link rel="stylesheet" href="./main.css" />
 		<title>TypeScript Baby</title>
 	</head>
 	<body>
-		<section style="display: flex; align-items: center; gap: .5rem;">
-			<h1>Dynomix</h1><small>...The wave of the future!</small>
+		<section id="heading">
+			<h1>Dynomix</h1>
+			<small>...The wave of the future!</small>
+			<div id="instructions">
+				<p>
+					Dynomix is a tool to help you get information about your vMix inputs by asking
+					the connected Companion instance very politely. Fill out the fields below, click
+					"Fetch Data", and you'll get everything you need (and nothing you don't).
+				</p>
+			</div>
 		</section>
 		<section id="controls">
 			<form autocomplete="off" id="inputs">
@@ -21,24 +27,16 @@
 				<button id="submit">Fetch data!</button>
 			</form>
 		</section>
-		<section
-			id="content"
-			style="
-				margin-top: 2rem;
-				margin-bottom: 2rem;
-				padding: 1rem;
-				outline: 1px solid currentColor;
-				border-radius: 0.2rem;
-				outline-offset: 0.5em;
-			">
+		<section id="content">
 			Fill out the form above to populate this area with vMix inputs.
 		</section>
-		<section id="help"></section>
+		<section id="help">
 			<h2>Need help?</h2>
 			<h3>Companion IP</h3>
 			<p>
-				The IP address of the computer you're using
-				Companion on. You can get this from the Companion program running on the computer. If it's this computer, you can write <code>localhost</code>.
+				The IP address of the computer you're using Companion on. You can get this from
+				the Companion program running on the computer. If it's this computer, you can
+				write <code>localhost</code>.
 			</p>
 			<h3>Companion port</h3>
 			<p>
@@ -47,10 +45,12 @@
 			</p>
 			<h3>vMix name</h3>
 			<p>
-				The name of the vMix connection <em>inside of Companion</em>.
-				Check the <code>Connections</code> page of the Companion Web Interface!
+				The name of the vMix connection <em>inside of Companion</em>. Check the
+				<code>Connections</code> page of the Companion Web Interface!
 			</p>
 		</section>
+		<!-- Remember kids, bundle and minify your scripts. -->
+		<script src="vendor/purify.min.js"></script>
 		<script src="main.js"></script>
 	</body>
 </html>
