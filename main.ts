@@ -22,6 +22,8 @@ console.log("Done with post-load processing.");
 
 //
 
+let renderedData: CompanionData = [];
+
 configForm.addEventListener("submit", async (e) => {
 	e.preventDefault();
 	// Get the values from the inputs
@@ -38,7 +40,8 @@ configForm.addEventListener("submit", async (e) => {
 	try {
 		// content.textContent = "Fetching...";
 		const data = await fetchData(ip, port, instance, 2000);
-		renderData(content, data);
+		const content = document.getElementById("content") as HTMLElement;
+		renderedData = renderData(content, data);
 	} catch (error: any) {
 		content.textContent = error;
 	}
@@ -46,32 +49,35 @@ configForm.addEventListener("submit", async (e) => {
 
 //
 
-function renderData(content: HTMLElement, data: { title: string; key: string }[]): void {
-	content.innerHTML = "";
-	const ol = document.createElement("ol");
-	ol.id = "inputList";
-	content.appendChild(ol);
-	content.classList.add("populated");
-	data.forEach((input) => {
-		// const div = document.createElement("div");
-		// div.classList.add("listItem");
-		const title = input.title;
-		const key = input.key;
+type InputData = {
+	title: string;
+	key: string;
+};
+
+type CompanionData = Array<InputData>;
+
+function buildDataList(input: InputData) {}
+
+function renderData(content: HTMLElement, data: CompanionData): CompanionData {
+	const ol: HTMLOListElement = document.getElementById("inputList")
+		? <HTMLOListElement>document.getElementById("inputList")
+		: <HTMLOListElement>document.createElement("ol");
+
+	if (!content.contains(document.getElementById("inputList"))) {
+		content.innerHTML = "";
+		ol.id = "inputList";
+		content.appendChild(ol);
+		content.classList.add("populated");
+	}
+	data.forEach(({ title, key } /* Destructure the actual args you need */) => {
 		const li = document.createElement("li");
-		const dirty = `<button id="${key}-btn">Copy</button><label for="${key}" style="font-family: monospace;">
-				${
-					title.length > 45
-						? title
-						: // .slice(0, 39)
-						  // .concat("...")
-						  // .concat(title.slice(title.length - 3, title.length))
-						  title
-				}</label><input name="${key}" id="${key}" value="${key}" type="text" />
-			`;
-		//@ts-ignore
+		li.id = key;
+		const dirty = `<button id="${key}-btn">Copy</button><label for="${key}-text">
+				${title}</label><input name="${key}-text" id="${key}-text" value="${key}" type="text" />`;
+		// @ts-ignore
 		const clean = DOMPurify.sanitize(dirty);
 		li.innerHTML = clean;
-		ol.append(li);
+		ol?.append(li);
 		if (document.getElementById(`${key}-btn`)) {
 			//@ts-ignore
 			document.getElementById(`${key}-btn`).onclick = async () => {
@@ -80,13 +86,24 @@ function renderData(content: HTMLElement, data: { title: string; key: string }[]
 			};
 		}
 	});
+	console.log("Returning data...");
+	console.log(JSON.stringify(data));
+	return data;
 }
 
-async function fetchData(ip: string, port: string, instance: string, timeoutMs: number) {
+async function fetchData(
+	ip: string,
+	port: string,
+	instance: string,
+	timeoutMs: number
+) {
 	if (!ip || !port || !instance) throw new Error(`Missing data`);
-	const response = await fetch(`http://${ip}:${port}/instance/${instance}/data`, {
-		signal: AbortSignal.timeout(timeoutMs),
-	});
+	const response = await fetch(
+		`http://${ip}:${port}/instance/${instance}/data`,
+		{
+			signal: AbortSignal.timeout(timeoutMs),
+		}
+	);
 	const data = await handleHttpResponse(response);
 	return data;
 }

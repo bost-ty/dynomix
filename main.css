@@ -10,12 +10,12 @@ section#heading {
 div#instructions {
 	color: var(--text-muted);
 	text-wrap: balance;
-	text-align: right;
+	text-align: center;
 }
 
 section#controls form {
 	display: flex;
-	align-items: stretch;
+	align-items: stretch center;
 	justify-content: center;
 	margin: 0 auto;
 	flex-flow: row wrap;
@@ -51,8 +51,9 @@ ol#inputList li {
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
-	justify-content: space-between;
+	justify-content: space-evenly;
 	padding: 0.5rem;
+	padding-top: 1rem;
 }
 
 ol#inputList li label {
@@ -82,5 +83,5 @@ ol#inputList li button.recently-copied {
 }
 
 ol#inputList li button.copied {
-	outline: 1px solid var(--text-main);
+	background-color: var(--border);
 }
