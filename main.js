@@ -23,10 +23,6 @@ configForm.addEventListener("submit", async (e) => {
         qp.set(input.name, input.value);
         return input.value;
     });
-    // Set query parameters and update URL
-    // qp.set("ip", ip);
-    // qp.set("port", port);
-    // qp.set("instance", instance);
     history.pushState(null, "", url);
     try {
         const data = await fetchData(ip, port, instance, 2000);
