@@ -1,4 +1,7 @@
 "use strict";
+/**
+ * main.ts
+ **/
 console.log("Welcome to Dynomix!");
 const content = document.getElementById("content");
 const configForm = document.getElementById("inputs");
@@ -9,26 +12,23 @@ const portInput = document.getElementById("port");
 const instanceInput = document.getElementById("instance");
 const inputs = [ipInput, portInput, instanceInput];
 inputs.forEach((input) => {
-    if (qp.has(input.name)) {
-        input.value = qp.get(input.name);
-    }
+    qp.has(input.name) ? (input.value = qp.get(input.name)) : "";
 });
-console.log("Done with post-load processing.");
 //
 let renderedData = [];
 configForm.addEventListener("submit", async (e) => {
     e.preventDefault();
-    // Get the values from the inputs
-    const ip = ipInput.value;
-    const port = portInput.value;
-    const instance = instanceInput.value;
+    // Get the current values of the inputs
+    const [ip, port, instance] = inputs.map((input) => {
+        qp.set(input.name, input.value);
+        return input.value;
+    });
     // Set query parameters and update URL
-    qp.set("ip", ip);
-    qp.set("port", port);
-    qp.set("instance", instance);
+    // qp.set("ip", ip);
+    // qp.set("port", port);
+    // qp.set("instance", instance);
     history.pushState(null, "", url);
     try {
-        // content.textContent = "Fetching...";
         const data = await fetchData(ip, port, instance, 2000);
         const content = document.getElementById("content");
         renderedData = renderData(content, data);
@@ -37,7 +37,6 @@ configForm.addEventListener("submit", async (e) => {
         content.textContent = error;
     }
 });
-function buildDataList(input) { }
 function renderData(content, data) {
     const ol = document.getElementById("inputList")
         ? document.getElementById("inputList")
@@ -65,8 +64,6 @@ function renderData(content, data) {
             };
         }
     });
-    console.log("Returning data...");
-    console.log(JSON.stringify(data));
     return data;
 }
 async function fetchData(ip, port, instance, timeoutMs) {

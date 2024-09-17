@@ -1,3 +1,6 @@
+/**
+ * main.ts
+ **/
 console.log("Welcome to Dynomix!");
 
 const content = document.getElementById("content") as HTMLElement;
@@ -13,12 +16,8 @@ const instanceInput = document.getElementById("instance") as HTMLInputElement;
 const inputs = [ipInput, portInput, instanceInput];
 
 inputs.forEach((input: any) => {
-	if (qp.has(input.name)) {
-		input.value = qp.get(input.name);
-	}
+	qp.has(input.name) ? (input.value = qp.get(input.name)) : "";
 });
-
-console.log("Done with post-load processing.");
 
 //
 
@@ -26,19 +25,14 @@ let renderedData: CompanionData = [];
 
 configForm.addEventListener("submit", async (e) => {
 	e.preventDefault();
-	// Get the values from the inputs
-	const ip = ipInput.value;
-	const port = portInput.value;
-	const instance = instanceInput.value;
-
-	// Set query parameters and update URL
-	qp.set("ip", ip);
-	qp.set("port", port);
-	qp.set("instance", instance);
+	// Get the current values of the inputs
+	const [ip, port, instance] = inputs.map((input) => {
+		qp.set(input.name, input.value);
+		return input.value;
+	});
 	history.pushState(null, "", url);
 
 	try {
-		// content.textContent = "Fetching...";
 		const data = await fetchData(ip, port, instance, 2000);
 		const content = document.getElementById("content") as HTMLElement;
 		renderedData = renderData(content, data);
@@ -55,8 +49,6 @@ type InputData = {
 };
 
 type CompanionData = Array<InputData>;
-
-function buildDataList(input: InputData) {}
 
 function renderData(content: HTMLElement, data: CompanionData): CompanionData {
 	const ol: HTMLOListElement = document.getElementById("inputList")
@@ -86,8 +78,6 @@ function renderData(content: HTMLElement, data: CompanionData): CompanionData {
 			};
 		}
 	});
-	console.log("Returning data...");
-	console.log(JSON.stringify(data));
 	return data;
 }
 
