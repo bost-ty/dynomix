@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="./water.css" />
+		<link rel="stylesheet" href="./vendor/water.css" />
 		<link rel="stylesheet" href="./main.css" />
 		<title>TypeScript Baby</title>
 	</head>
@@ -15,15 +15,18 @@
 		<section id="controls">
 			<div id="instructions">
 				<p>
-					Dynomix is a tool to help you get information about your vMix inputs by asking
-					the connected Companion instance very politely. Fill out the fields below, click
-					"Fetch Data", and you'll get everything you need (and nothing you don't).
+					Dynomix is a tool to help you get information about your vMix inputs
+					by asking the connected Companion instance very politely. Fill out the
+					fields below, click "Fetch Data", and you'll get everything you need
+					(and nothing you don't).
 				</p>
 			</div>
 			<form autocomplete="off" id="inputs">
 				<label>Companion IP<input type="text" name="ip" id="ip" /></label>
 				<label>Companion port<input type="text" name="port" id="port" /></label>
-				<label>vMix name <input type="text" name="instance" id="instance" /></label>
+				<label
+					>vMix name <input type="text" name="instance" id="instance"
+				/></label>
 				<button id="submit">Fetch data!</button>
 			</form>
 		</section>
@@ -34,9 +37,9 @@
 			<h2>Need help?</h2>
 			<h3>Companion IP</h3>
 			<p>
-				The IP address of the computer you're using Companion on. You can get this from
-				the Companion program running on the computer. If it's this computer, you can
-				write <code>localhost</code>.
+				The IP address of the computer you're using Companion on. You can get
+				this from the Companion program running on the computer. If it's this
+				computer, you can write <code>localhost</code>.
 			</p>
 			<h3>Companion port</h3>
 			<p>
@@ -50,7 +53,7 @@
 			</p>
 		</section>
 		<!-- Remember kids, bundle and minify your scripts. -->
-		<script src="vendor/purify.min.js"></script>
-		<script src="main.js"></script>
+		<script src="./vendor/purify.min.js"></script>
+		<script src="./main.js"></script>
 	</body>
 </html>
