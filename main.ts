@@ -48,7 +48,6 @@ type InputData = {
 	title: string;
 	key: string;
 };
-
 type CompanionData = Array<InputData>;
 
 function renderData(content: HTMLElement, data: CompanionData): CompanionData {
@@ -63,12 +62,11 @@ function renderData(content: HTMLElement, data: CompanionData): CompanionData {
 		const dirty = `<button id="${key}-btn">Copy</button><label for="${key}-text">
 				${title}</label><input name="${key}-text" id="${key}-text" value="${key}" type="text" />`;
 		// @ts-ignore
-		const clean = DOMPurify.sanitize(dirty);
-		li.innerHTML = clean;
-		ol?.append(li);
-
-		//@ts-ignore
-		document.getElementById(`${key}-btn`).onclick = async function () {
+		li.innerHTML = DOMPurify.sanitize(dirty);
+		ol.append(li);
+		const button = document.getElementById(`${key}-btn`);
+		if (!button) throw new Error(`No key-btn found for key ${key}`);
+		button.onclick = async function () {
 			await copyKey(key)
 				.then((t) => console.log(`Copied ${t}`))
 				.catch((err) => console.error(err));
