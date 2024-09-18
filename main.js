@@ -97,11 +97,11 @@ async function copyKey(key) {
         throw new Error("Could not locate my button!");
     //@ts-ignore
     const t = document.getElementById(`${key}-text`).value;
-    navigator.clipboard.writeText(t);
-    self?.classList.add("recently-copied");
-    self?.classList.add("copied");
+    navigator.clipboard.writeText(t).catch((err) => console.error(err));
+    self.classList.add("recently-copied");
+    self.classList.add("copied");
     setTimeout(() => {
-        self?.classList.remove("recently-copied");
+        self.classList.remove("recently-copied");
     }, 5000);
     return t;
 }
