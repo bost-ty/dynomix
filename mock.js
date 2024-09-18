@@ -137,7 +137,7 @@ const data = [
 
 const server = createServer((req, res) => {
 	res.setHeader("Access-Control-Allow-Origin", "*");
-	if (req.url === "/instance/VMIX_B/data" && req.method === "GET") {
+	if (req.url === "/instance/VMIX_B/inputs" && req.method === "GET") {
 		res.setHeader("Content-Type", "application/json");
 		res.statusCode = 200;
 		res.end(JSON.stringify(data));
