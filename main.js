@@ -93,16 +93,16 @@ async function handleHttpResponse(response) {
 }
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 async function copyKey(key) {
-    const self = document.getElementById(`${key}-btn`);
-    if (!self)
+    const button = document.getElementById(`${key}-btn`);
+    if (!button)
         throw new Error("Could not locate my button!");
     //@ts-ignore
     const t = document.getElementById(`${key}-text`).value;
     navigator.clipboard.writeText(t).catch((err) => console.error(err));
-    self.classList.add("recently-copied");
-    self.classList.add("copied");
+    button.classList.add("recently-copied");
+    button.classList.add("copied");
     setTimeout(() => {
-        self.classList.remove("recently-copied");
+        button.classList.remove("recently-copied");
     }, 5000);
     return t;
 }
