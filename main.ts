@@ -84,7 +84,7 @@ async function fetchData(
 ) {
 	if (!ip || !port || !instance) throw new Error(`Missing data`);
 	const response = await fetch(
-		`http://${ip}:${port}/instance/${instance}/data`,
+		`http://${ip}:${port}/instance/${instance}/inputs`, // TODO: Let you pick which endpoint you want
 		{
 			signal: AbortSignal.timeout(timeoutMs),
 		}
