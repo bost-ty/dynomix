@@ -25,11 +25,12 @@ configForm.addEventListener("submit", async (e) => {
     });
     history.pushState(null, "", url);
     try {
-        const data = await fetchData(ip, port, instance, 2000);
+        const data = await fetchInputs(ip, port, instance, 2000);
         const content = document.getElementById("content");
         renderedData = renderData(content, data);
     }
     catch (error) {
+        console.error(error);
         content.textContent = error;
     }
 });
@@ -48,17 +49,16 @@ function renderData(content, data) {
         const clean = DOMPurify.sanitize(dirty);
         li.innerHTML = clean;
         ol?.append(li);
-        if (document.getElementById(`${key}-btn`)) {
-            //@ts-ignore
-            document.getElementById(`${key}-btn`).onclick = async () => {
-                //@ts-ignore
-                await copyKey(key);
-            };
-        }
+        //@ts-ignore
+        document.getElementById(`${key}-btn`).onclick = async function () {
+            await copyKey(key)
+                .then((t) => console.log(`Copied ${t}`))
+                .catch((err) => console.error(err));
+        };
     });
     return data;
 }
-async function fetchData(ip, port, instance, timeoutMs) {
+async function fetchInputs(ip, port, instance, timeoutMs = 5000) {
     if (!ip || !port || !instance)
         throw new Error(`Missing data`);
     const response = await fetch(`http://${ip}:${port}/instance/${instance}/inputs`, // TODO: Let you pick which endpoint you want
@@ -93,17 +93,15 @@ async function handleHttpResponse(response) {
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 async function copyKey(key) {
     const self = document.getElementById(`${key}-btn`);
+    if (!self)
+        throw new Error("Could not locate my button!");
     //@ts-ignore
-    const t = document.getElementById(key).value;
+    const t = document.getElementById(`${key}-text`).value;
     navigator.clipboard.writeText(t);
-    try {
-        self?.classList.add("recently-copied");
-        self?.classList.add("copied");
-        setTimeout(() => {
-            self?.classList.remove("recently-copied");
-        }, 5000);
-    }
-    catch (error) {
-        console.error("Couldn't copy key!");
-    }
+    self?.classList.add("recently-copied");
+    self?.classList.add("copied");
+    setTimeout(() => {
+        self?.classList.remove("recently-copied");
+    }, 5000);
+    return t;
 }
