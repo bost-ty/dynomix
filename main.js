@@ -34,15 +34,11 @@ configForm.addEventListener("submit", async (e) => {
     }
 });
 function renderData(content, data) {
-    const ol = document.getElementById("inputList")
-        ? document.getElementById("inputList")
-        : document.createElement("ol");
+    const ol = document.createElement("ol");
+    ol.id = "inputList";
     content.innerHTML = "";
-    if (!content.contains(document.getElementById("inputList"))) {
-        ol.id = "inputList";
-        content.appendChild(ol);
-        content.classList.add("populated");
-    }
+    content.appendChild(ol);
+    content.classList.add("populated");
     data.forEach(({ title, key } /* Destructure the actual args you need */) => {
         const li = document.createElement("li");
         li.id = key;
