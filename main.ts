@@ -55,8 +55,8 @@ function renderData(content: HTMLElement, data: CompanionData): CompanionData {
 		? <HTMLOListElement>document.getElementById("inputList")
 		: <HTMLOListElement>document.createElement("ol");
 
+	content.innerHTML = "";
 	if (!content.contains(document.getElementById("inputList"))) {
-		content.innerHTML = "";
 		ol.id = "inputList";
 		content.appendChild(ol);
 		content.classList.add("populated");

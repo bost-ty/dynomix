@@ -37,8 +37,8 @@ function renderData(content, data) {
     const ol = document.getElementById("inputList")
         ? document.getElementById("inputList")
         : document.createElement("ol");
+    content.innerHTML = "";
     if (!content.contains(document.getElementById("inputList"))) {
-        content.innerHTML = "";
         ol.id = "inputList";
         content.appendChild(ol);
         content.classList.add("populated");
