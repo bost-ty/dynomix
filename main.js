@@ -10,9 +10,12 @@ const qp = url.searchParams;
 const ipInput = document.getElementById("ip");
 const portInput = document.getElementById("port");
 const instanceInput = document.getElementById("instance");
+configForm.addEventListener("load", () => {
+    configForm.focus();
+});
 const inputs = [ipInput, portInput, instanceInput];
 inputs.forEach((input) => {
-    qp.has(input.name) ? (input.value = qp.get(input.name)) : "";
+    qp.has(input.name) ? (input.value = qp.get(input.name)) : null;
 });
 //
 let renderedData = [];

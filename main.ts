@@ -13,10 +13,14 @@ const ipInput = document.getElementById("ip") as HTMLInputElement;
 const portInput = document.getElementById("port") as HTMLInputElement;
 const instanceInput = document.getElementById("instance") as HTMLInputElement;
 
+configForm.addEventListener("load", () => {
+	configForm.focus();
+});
+
 const inputs = [ipInput, portInput, instanceInput];
 
 inputs.forEach((input: any) => {
-	qp.has(input.name) ? (input.value = qp.get(input.name)) : "";
+	qp.has(input.name) ? (input.value = qp.get(input.name)) : null;
 });
 
 //
