@@ -23,7 +23,7 @@ function playToast(toast, message) {
     toast.textContent = message;
     toast.classList.add("on");
     toast.style.setProperty("--duration", `${duration}ms`);
-    return setTimeout(() => toast.classList.remove("on"), duration * 2);
+    return setTimeout(() => toast.classList.remove("on"), duration);
 }
 //
 let renderedData = [];
@@ -56,7 +56,7 @@ function renderData(content, data) {
             const li = document.createElement("li");
             li.id = key;
             const dirty = `<button id="${key}-btn">Copy</button><label for="${key}-text">
-				${title}</label><input name="${key}-text" id="${key}-text" value="${key}" type="text" />`;
+				${title}</label><input name="${key}-text" id="${key}-text" value="${key}" type="text" disabled />`;
             // @ts-ignore
             li.innerHTML = DOMPurify.sanitize(dirty);
             ol.append(li);
@@ -123,13 +123,7 @@ async function copyKey(key) {
         button.classList.remove("recently-copied");
     }, 5000);
     const toast = document.getElementById("toast");
-    if (toast) {
-        console.log("toast && toastTimeout");
-        clearTimeout(toastTimeout);
-        toastTimeout = playToast(toast, `Copied ${key}`);
-    }
-    else {
-        new Error("Cannot find `toast` element");
-    }
+    clearTimeout(toastTimeout);
+    toastTimeout = playToast(toast, `Copied ${key}`);
     return t;
 }
