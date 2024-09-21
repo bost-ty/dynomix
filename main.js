@@ -126,7 +126,6 @@ async function copyKey(key) {
     if (toast) {
         console.log("toast && toastTimeout");
         clearTimeout(toastTimeout);
-        toast.classList.add("on");
         toastTimeout = playToast(toast, `Copied ${key}`);
     }
     else {
