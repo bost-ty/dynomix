@@ -18,6 +18,14 @@ inputs.forEach((input) => {
     qp.has(input.name) ? (input.value = qp.get(input.name)) : null;
 });
 //
+function playToast(toast, message) {
+    const duration = 2000; // ms
+    toast.textContent = message;
+    toast.classList.add("on");
+    toast.style.setProperty("--duration", `${duration}ms`);
+    return setTimeout(() => toast.classList.remove("on"), duration * 2);
+}
+//
 let renderedData = [];
 configForm.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -101,6 +109,7 @@ async function handleHttpResponse(response) {
     }
 }
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+let toastTimeout = 0;
 async function copyKey(key) {
     const button = document.getElementById(`${key}-btn`);
     if (!button)
@@ -113,5 +122,15 @@ async function copyKey(key) {
     setTimeout(() => {
         button.classList.remove("recently-copied");
     }, 5000);
+    const toast = document.getElementById("toast");
+    if (toast) {
+        console.log("toast && toastTimeout");
+        clearTimeout(toastTimeout);
+        toast.classList.add("on");
+        toastTimeout = playToast(toast, `Copied ${key}`);
+    }
+    else {
+        new Error("Cannot find `toast` element");
+    }
     return t;
 }

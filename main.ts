@@ -25,6 +25,16 @@ inputs.forEach((input: any) => {
 
 //
 
+function playToast(toast: HTMLDivElement, message: string) {
+	const duration = 2000; // ms
+	toast.textContent = message;
+	toast.classList.add("on");
+	toast.style.setProperty("--duration", `${duration}ms`);
+	return setTimeout(() => toast.classList.remove("on"), duration * 2);
+}
+
+//
+
 let renderedData: CompanionData = [];
 
 configForm.addEventListener("submit", async (e) => {
@@ -127,6 +137,7 @@ async function handleHttpResponse(response: Response): Promise<any> {
 
 const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
+let toastTimeout: number | undefined = 0;
 async function copyKey(key: string) {
 	const button = document.getElementById(`${key}-btn`);
 	if (!button) throw new Error("Could not locate my button!");
@@ -138,5 +149,13 @@ async function copyKey(key: string) {
 	setTimeout(() => {
 		button.classList.remove("recently-copied");
 	}, 5000);
+	const toast = document.getElementById("toast");
+	if (toast) {
+		console.log("toast && toastTimeout");
+		clearTimeout(toastTimeout);
+		toastTimeout = playToast(<HTMLDivElement>toast, `Copied ${key}`);
+	} else {
+		new Error("Cannot find `toast` element");
+	}
 	return t;
 }
