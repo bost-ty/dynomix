@@ -52,13 +52,13 @@ function renderData(content, data) {
     content.appendChild(ol);
     if (data.length > 0) {
         content.classList.add("populated");
-        data.forEach(({ title, key } /* Destructure the actual args you need */) => {
+        data.forEach(({ title, key }) => {
             const li = document.createElement("li");
-            li.id = key;
             const dirty = `<button id="${key}-btn">Copy</button><label for="${key}-text">
-				${title}</label><input name="${key}-text" id="${key}-text" value="${key}" type="text" disabled />`;
+			${title}</label><input name="${key}-text" id="${key}-text" value="${key}" type="text" disabled />`;
             // @ts-ignore
             li.innerHTML = DOMPurify.sanitize(dirty);
+            li.id = key;
             ol.append(li);
             const button = document.getElementById(`${key}-btn`);
             if (!button)

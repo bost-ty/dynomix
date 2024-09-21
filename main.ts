@@ -71,24 +71,22 @@ function renderData(content: HTMLElement, data: CompanionData): CompanionData {
 	content.appendChild(ol);
 	if (data.length > 0) {
 		content.classList.add("populated");
-		data.forEach(
-			({ title, key } /* Destructure the actual args you need */) => {
-				const li = document.createElement("li");
-				li.id = key;
-				const dirty = `<button id="${key}-btn">Copy</button><label for="${key}-text">
-				${title}</label><input name="${key}-text" id="${key}-text" value="${key}" type="text" disabled />`;
-				// @ts-ignore
-				li.innerHTML = DOMPurify.sanitize(dirty);
-				ol.append(li);
-				const button = document.getElementById(`${key}-btn`);
-				if (!button) throw new Error(`No key-btn found for key ${key}`);
-				button.onclick = async function () {
-					await copyKey(key)
-						.then((t) => console.log(`Copied ${t}`))
-						.catch((err) => console.error(err));
-				};
-			}
-		);
+		data.forEach(({ title, key }) => {
+			const li = document.createElement("li");
+			const dirty = `<button id="${key}-btn">Copy</button><label for="${key}-text">
+			${title}</label><input name="${key}-text" id="${key}-text" value="${key}" type="text" disabled />`;
+			// @ts-ignore
+			li.innerHTML = DOMPurify.sanitize(dirty);
+			li.id = key;
+			ol.append(li);
+			const button = document.getElementById(`${key}-btn`);
+			if (!button) throw new Error(`No key-btn found for key ${key}`);
+			button.onclick = async function () {
+				await copyKey(key)
+					.then((t) => console.log(`Copied ${t}`))
+					.catch((err) => console.error(err));
+			};
+		});
 	} else {
 		content.innerHTML =
 			"No inputs found! Is vMix open and connected to Companion?";
