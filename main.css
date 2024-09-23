@@ -54,6 +54,13 @@ ol#inputList li {
 	justify-content: space-evenly;
 	padding: 0.5rem;
 	padding-top: 1rem;
+
+	& span {
+		font-family: monospace;
+		color: var(--text-muted);
+		padding: 0.2rem;
+		margin-bottom: 0.2rem;
+	}
 }
 
 ol#inputList li label {

@@ -54,7 +54,7 @@ function renderData(content, data) {
         content.classList.add("populated");
         data.forEach(({ title, key, number }) => {
             const li = document.createElement("li");
-            const dirty = `<button id="${key}-btn">Copy</button><label for="${key}-text">
+            const dirty = `<span id="${key}-number">${number}</span><button id="${key}-btn">Copy</button><label for="${key}-text">
 			${title}</label><input name="${key}-text" id="${key}-text" value="${key}" type="text" disabled />`;
             // @ts-ignore
             li.innerHTML = DOMPurify.sanitize(dirty);
