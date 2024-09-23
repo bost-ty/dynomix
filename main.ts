@@ -83,7 +83,7 @@ function renderData(content: HTMLElement, data: CompanionData): CompanionData {
 			const button = document.getElementById(`${key}-btn`);
 			if (!button) throw new Error(`No key-btn found for key ${key}`);
 			button.onclick = async function () {
-				await copyKey(key)
+				await copyKey(key, number)
 					.then((t) => console.log(`Copied ${t}`))
 					.catch((err) => console.error(err));
 			};
@@ -137,7 +137,7 @@ async function handleHttpResponse(response: Response): Promise<any> {
 const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 let toastTimeout: number | undefined = 0;
-async function copyKey(key: string) {
+async function copyKey(key: string, input: number) {
 	const button = document.getElementById(`${key}-btn`);
 	if (!button) throw new Error("Could not locate my button!");
 	//@ts-ignore
@@ -150,7 +150,7 @@ async function copyKey(key: string) {
 	}, 5000);
 	const toast = document.getElementById("toast");
 	clearTimeout(toastTimeout);
-	toastTimeout = playToast(<HTMLDivElement>toast, `Copied ${key}`);
+	toastTimeout = playToast(<HTMLDivElement>toast, `${input} ✅ ${key}`);
 
 	return t;
 }

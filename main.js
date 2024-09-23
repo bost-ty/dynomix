@@ -64,7 +64,7 @@ function renderData(content, data) {
             if (!button)
                 throw new Error(`No key-btn found for key ${key}`);
             button.onclick = async function () {
-                await copyKey(key)
+                await copyKey(key, number)
                     .then((t) => console.log(`Copied ${t}`))
                     .catch((err) => console.error(err));
             };
@@ -110,7 +110,7 @@ async function handleHttpResponse(response) {
 }
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 let toastTimeout = 0;
-async function copyKey(key) {
+async function copyKey(key, input) {
     const button = document.getElementById(`${key}-btn`);
     if (!button)
         throw new Error("Could not locate my button!");
@@ -124,6 +124,6 @@ async function copyKey(key) {
     }, 5000);
     const toast = document.getElementById("toast");
     clearTimeout(toastTimeout);
-    toastTimeout = playToast(toast, `Copied ${key}`);
+    toastTimeout = playToast(toast, `${input} ✅ ${key}`);
     return t;
 }
