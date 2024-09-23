@@ -61,6 +61,7 @@ configForm.addEventListener("submit", async (e) => {
 type InputData = {
 	title: string;
 	key: string;
+	number: number;
 };
 type CompanionData = Array<InputData>;
 
@@ -71,7 +72,7 @@ function renderData(content: HTMLElement, data: CompanionData): CompanionData {
 	content.appendChild(ol);
 	if (data.length > 0) {
 		content.classList.add("populated");
-		data.forEach(({ title, key }) => {
+		data.forEach(({ title, key, number }) => {
 			const li = document.createElement("li");
 			const dirty = `<button id="${key}-btn">Copy</button><label for="${key}-text">
 			${title}</label><input name="${key}-text" id="${key}-text" value="${key}" type="text" disabled />`;
