@@ -26,8 +26,17 @@ section#controls form {
 	}
 }
 
+section#filterControls {
+	margin: 1rem auto;
+	text-align: center;
+	padding: 0;
+	& input[type="text"] {
+		margin-right: auto;
+	}
+}
+
 section#content {
-	margin: 2rem auto;
+	margin: 1rem auto;
 	padding: 3rem;
 	text-align: center;
 	outline: 1px solid var(--text-muted);
