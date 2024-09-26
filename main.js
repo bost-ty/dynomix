@@ -26,6 +26,7 @@ function playToast(toast, message) {
     return setTimeout(() => toast.classList.remove("on"), duration);
 }
 //
+const filter = document.getElementById("filter");
 let renderedData = [];
 configForm.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -53,21 +54,24 @@ function renderData(content, data) {
     if (data.length > 0) {
         content.classList.add("populated");
         data.forEach(({ title, key, number }) => {
-            const li = document.createElement("li");
-            const dirty = `<span id="${key}-number">${number}</span><button id="${key}-btn">Copy</button><label for="${key}-text">
-			${title}</label><input name="${key}-text" id="${key}-text" value="${key}" type="text" disabled />`;
-            // @ts-ignore
-            li.innerHTML = DOMPurify.sanitize(dirty);
-            li.id = key;
-            ol.append(li);
-            const button = document.getElementById(`${key}-btn`);
-            if (!button)
-                throw new Error(`No key-btn found for key ${key}`);
-            button.onclick = async function () {
-                await copyKey(key, number)
-                    .then((t) => console.log(`Copied ${t}`))
-                    .catch((err) => console.error(err));
-            };
+            if (filter.value.length === 0 || title.includes(filter.value)) {
+                const numberDisplay = number.toString().padStart(3, "0");
+                const li = document.createElement("li");
+                const dirty = `<span id="${key}-number">${numberDisplay}</span><button id="${key}-btn">Copy</button><label for="${key}-text">
+								${title}</label><input name="${key}-text" id="${key}-text" value="${key}" type="text" disabled />`;
+                // @ts-ignore
+                li.innerHTML = DOMPurify.sanitize(dirty);
+                li.id = key;
+                ol.append(li);
+                const button = document.getElementById(`${key}-btn`);
+                if (!button)
+                    throw new Error(`No key-btn found for key ${key}`);
+                button.onclick = async function () {
+                    await copyKey(key, number)
+                        .then((t) => console.log(`Copied ${t}`))
+                        .catch((err) => console.error(err));
+                };
+            }
         });
     }
     else {
