@@ -7,10 +7,11 @@ section#heading {
 	gap: 0.5rem;
 }
 
-div#instructions {
+section#instructions {
 	color: var(--text-muted);
 	text-wrap: balance;
 	text-align: center;
+	padding-bottom: 0.5rem;
 }
 
 section#controls form {
