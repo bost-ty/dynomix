@@ -26,7 +26,6 @@ function playToast(toast, message) {
     return setTimeout(() => toast.classList.remove("on"), duration);
 }
 //
-const filter = document.getElementById("filter");
 let renderedData = [];
 configForm.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -52,6 +51,7 @@ function renderData(content, data) {
     content.innerHTML = "";
     content.appendChild(ol);
     if (data.length > 0) {
+        const filter = document.getElementById("filter");
         content.classList.add("populated");
         data.forEach(({ title, key, number }) => {
             if (filter.value.length === 0 || title.includes(filter.value)) {

@@ -26,15 +26,6 @@ section#controls form {
 	}
 }
 
-section#filterControls {
-	margin: 1rem auto;
-	text-align: center;
-	padding: 0;
-	& input[type="text"] {
-		margin-right: auto;
-	}
-}
-
 section#content {
 	margin: 1rem auto;
 	padding: 3rem;
