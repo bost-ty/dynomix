@@ -19,10 +19,9 @@ inputs.forEach((input) => {
 });
 //
 function playToast(toast, message) {
-    const duration = 2000; // ms
+    const duration = 3000; // ms
     toast.textContent = message;
     toast.classList.add("on");
-    toast.style.setProperty("--duration", `${duration}ms`);
     return setTimeout(() => toast.classList.remove("on"), duration);
 }
 //
