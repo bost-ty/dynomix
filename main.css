@@ -111,11 +111,13 @@ div#toast {
 	font-family: monospace;
 	color: var(--text-muted);
 	width: 45ch;
-	translate: 100%;
-	transition: translate ease-in-out 350ms, border-image ease 2500ms;
+	transform: translateX(100%);
+	will-change: transform, border-image;
+	transition: transform ease-in 500ms, border-image ease 2500ms;
 	z-index: 1;
 	&.on {
-		translate: 0%;
+		transform: translateX(0%);
+		transition: transform ease-out 500ms;
 		animation-name: border-loop;
 		animation-duration: 750ms;
 		animation-iteration-count: infinite;
@@ -123,7 +125,7 @@ div#toast {
 		animation-direction: alternate;
 	}
 	@media (prefers-reduced-motion) {
-		translate: 0%;
+		transform: translateX(0%);
 		border-image: none;
 		border-color: var(--border);
 		&.on {
