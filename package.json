@@ -4,9 +4,7 @@
 	"description": "Monitor Companion-connected vMix instances on the fly",
 	"main": "main.js",
 	"type": "module",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
+	"scripts": {},
 	"keywords": [
 		"vmix",
 		"companion"

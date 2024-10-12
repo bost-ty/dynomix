@@ -10,21 +10,16 @@ const qp = url.searchParams;
 const ipInput = document.getElementById("ip");
 const portInput = document.getElementById("port");
 const instanceInput = document.getElementById("instance");
-configForm.addEventListener("load", () => {
-    configForm.focus();
-});
 const inputs = [ipInput, portInput, instanceInput];
 inputs.forEach((input) => {
     qp.has(input.name) ? (input.value = qp.get(input.name)) : null;
 });
-//
 function playToast(toast, message) {
     const duration = 3000; // ms
     toast.textContent = message;
     toast.classList.add("on");
     return setTimeout(() => toast.classList.remove("on"), duration);
 }
-//
 let renderedData = [];
 configForm.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -74,8 +69,7 @@ function renderData(content, data) {
         });
     }
     else {
-        content.innerHTML =
-            "No inputs found! Is vMix open and connected to Companion?";
+        content.innerHTML = "No inputs found! Is vMix open and connected to Companion?";
     }
     return data;
 }
