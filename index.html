@@ -8,19 +8,23 @@
 		<title>Dynomix!</title>
 	</head>
 	<body>
-		<div aria-role="toast" id="toast" class="">
-			Copied XXXX-XXXX-XXXX-XXXX
-		</div>
+		<div aria-role="toast" id="toast" class="">Copied XXXX-XXXX-XXXX-XXXX</div>
 		<section id="heading">
 			<h1>Dynomix</h1>
 			<small>...The wave of the future!</small>
 		</section>
 		<section id="instructions">
 			<p>
-				Dynomix is a tool to help you get information about your vMix
-				inputs by asking the connected Companion instance very politely.
-				Fill out the fields below, click "Fetch Data", and you'll get
-				everything you need (and nothing you don't).
+				Dynomix is a tool to help you get information about your vMix inputs by
+				asking the connected Companion instance very politely.
+			</p>
+			<p>
+				Fill out the fields below, click "Fetch Data" or press <kbd>Enter</kbd>,
+				and you'll get everything you need (and nothing you don't).
+			</p>
+			<p>
+				Resubmit with a value in the "Filter by input title" field to filter
+				results.
 			</p>
 		</section>
 		<section id="controls">
@@ -43,11 +47,7 @@
 				/></label>
 				<label
 					>vMix name
-					<input
-						type="text"
-						name="instance"
-						id="instance"
-						value="VMIX_B"
+					<input type="text" name="instance" id="instance" value="VMIX_B"
 				/></label>
 				<label
 					>Filter by input title<input
@@ -56,7 +56,7 @@
 						id="filter"
 						placeholder="(Optional)"
 				/></label>
-				<button id="submit">Fetch data!</button>
+				<button id="submit">Fetch Data</button>
 			</form>
 		</section>
 		<section id="content">
@@ -67,28 +67,25 @@
 			<details open>
 				<summary>Companion IP</summary>
 				<p>
-					The IP address of the computer you're using Companion on.
-					You can get this from the Companion program running on the
-					computer. If it's this computer, you can write
+					The IP address of the computer you're using Companion on. You can get
+					this from the Companion program running on the computer. If it's this
+					computer, you can write
 					<code>localhost</code>.
 				</p>
 			</details>
 			<details open>
 				<summary>Companion port</summary>
 				<p>
-					The port that Companion is listening on. Companion defaults
-					to
-					<code>8000</code>, but you can check the Companion program
-					to be sure.
+					The port that Companion is listening on. Companion defaults to
+					<code>8000</code>, but you can check the Companion program to be sure.
 				</p>
 			</details>
 			<details open>
 				<summary>vMix name</summary>
 				<p>
 					The name of the vMix connection
-					<em>inside of Companion</em>. Check the
-					<code>Connections</code> page of the Companion Web
-					Interface!
+					<em>inside of Companion</em>. Check the <code>Connections</code> page
+					of the Companion Web Interface!
 				</p>
 			</details>
 		</section>

@@ -18,11 +18,18 @@ section#controls form {
 	display: flex;
 	align-items: stretch center;
 	justify-content: center;
-	margin: 0 auto;
+	/* margin: 0 auto; */
 	flex-flow: row wrap;
-
+	gap: 0.2rem;
+	& label {
+		text-align: center;
+	}
 	& label input {
+		margin-top: 0.25em;
 		width: clamp(15ch, calc(10ch + 1vw), 40ch);
+	}
+	& button {
+		outline: 1px solid var(--text-muted);
 	}
 }
 
