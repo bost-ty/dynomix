@@ -44,32 +44,46 @@ function renderData(content, data) {
     ol.id = "inputList";
     content.innerHTML = "";
     content.appendChild(ol);
-    if (data.length > 0) {
-        const filter = document.getElementById("filter");
-        content.classList.add("populated");
-        data.forEach(({ title, key, number }) => {
-            if (filter.value.length === 0 || title.includes(filter.value)) {
-                const numberDisplay = number.toString().padStart(3, "0");
-                const li = document.createElement("li");
-                const dirty = `<span id="${key}-number">${numberDisplay}</span><button id="${key}-btn">Copy</button><label for="${key}-text">
+    if (!(data.length > 0)) {
+        content.textContent = "No inputs found. Is vMix open and connected to Companion?";
+        return data;
+    }
+    content.classList.add("data-updated");
+    setTimeout(() => {
+        content.classList.remove("data-updated");
+    }, 200);
+    const filter = document.getElementById("filter");
+    content.classList.add("populated");
+    let matches = false;
+    data.forEach(({ title, key, number }) => {
+        if (filter.value.length === 0 ||
+            filter.value === "" ||
+            title.includes(filter.value)) {
+            matches = true;
+            const numberDisplay = number.toString().padStart(3, "0");
+            const li = document.createElement("li");
+            const dirtyHTML = `<span id="${key}-number">${numberDisplay}</span><button id="${key}-btn">Copy</button><label for="${key}-text">
 								${title}</label><input name="${key}-text" id="${key}-text" value="${key}" type="text" disabled />`;
-                // @ts-ignore
-                li.innerHTML = DOMPurify.sanitize(dirty);
-                li.id = key;
-                ol.append(li);
-                const button = document.getElementById(`${key}-btn`);
-                if (!button)
-                    throw new Error(`No key-btn found for key ${key}`);
+            // @ts-ignore
+            li.innerHTML = DOMPurify.sanitize(dirtyHTML);
+            li.id = key;
+            ol.append(li);
+            const button = document.getElementById(`${key}-btn`);
+            if (button) {
                 button.onclick = async function () {
                     await copyKey(key, number)
                         .then((t) => console.log(`Copied ${t}`))
                         .catch((err) => console.error(err));
                 };
             }
-        });
-    }
-    else {
-        content.innerHTML = "No inputs found! Is vMix open and connected to Companion?";
+            else {
+                throw new Error(`No button found with id \`${key}-btn\`.`);
+            }
+        }
+    });
+    if (!matches) {
+        content.classList.remove("populated");
+        content.innerHTML = `No input matches for <code>${filter.value}</code>.<br>Please try a different term.`;
     }
     return data;
 }

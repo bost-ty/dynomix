@@ -32,10 +32,14 @@ section#content {
 	text-align: center;
 	outline: 1px solid var(--text-muted);
 	border-radius: 0.2rem;
+	transition: filter 200ms ease;
 
 	&.populated {
 		padding: 0rem;
 		width: 100%;
+	}
+	&.data-updated {
+		filter: brightness(50%);
 	}
 }
 
@@ -101,12 +105,7 @@ div#toast {
 	padding: 1rem 0 1rem 1rem;
 	border-width: 4px;
 	border-style: solid;
-	border-image: linear-gradient(
-			to left,
-			var(--border) 80%,
-			var(--text-muted) 100%
-		)
-		1;
+	border-image: linear-gradient(to left, var(--border) 80%, var(--text-muted) 100%) 1;
 	border-right: none;
 	font-family: monospace;
 	color: var(--text-muted);
@@ -138,19 +137,11 @@ div#toast {
 
 @keyframes border-loop {
 	0% {
-		border-image: linear-gradient(
-				to left,
-				var(--border) 80%,
-				var(--text-muted) 100%
-			)
+		border-image: linear-gradient(to left, var(--border) 80%, var(--text-muted) 100%)
 			1;
 	}
 	100% {
-		border-image: linear-gradient(
-				to left,
-				var(--text-muted) 20%,
-				var(--border) 100%
-			)
+		border-image: linear-gradient(to left, var(--text-muted) 20%, var(--border) 100%)
 			1;
 	}
 }
