@@ -111,12 +111,9 @@ async function fetchInputs(
 	timeoutMs: number = 5000
 ) {
 	if (!ip || !port || !instance) throw new Error(`Missing data`);
-	const response = await fetch(
-		`http://${ip}:${port}/instance/${instance}/inputs`, // TODO: Allow for endpoint selection
-		{
-			signal: AbortSignal.timeout(timeoutMs),
-		}
-	);
+	const response = await fetch(`http://${ip}:${port}/instance/${instance}/inputs`, {
+		signal: AbortSignal.timeout(timeoutMs),
+	});
 	const data = await handleHttpResponse(response);
 	return data;
 }

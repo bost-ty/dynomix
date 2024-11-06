@@ -90,8 +90,7 @@ function renderData(content, data) {
 async function fetchInputs(ip, port, instance, timeoutMs = 5000) {
     if (!ip || !port || !instance)
         throw new Error(`Missing data`);
-    const response = await fetch(`http://${ip}:${port}/instance/${instance}/inputs`, // TODO: Allow for endpoint selection
-    {
+    const response = await fetch(`http://${ip}:${port}/instance/${instance}/inputs`, {
         signal: AbortSignal.timeout(timeoutMs),
     });
     const data = await handleHttpResponse(response);
