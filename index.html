@@ -64,38 +64,46 @@
 		</section>
 		<section id="help">
 			<h2>Need help?</h2>
-			<details open>
-				<summary>What's my <code>Companion IP</code>?</summary>
+			<p>Click each question below to open/close the details.</p>
+			<details>
+				<summary>What's my <b>Companion IP</b>?</summary>
 				<p>
 					The IP address of the computer you're using Companion on. You can get
 					this from the Companion program running on the computer. If it's your computer, set Companion to (the default) "All Interfaces" and use
-					<code>localhost</code> or <code>127.0.0.1</code>. This is the recommended way to use Dynomix!
+					<code>localhost</code> or <code>127.0.0.1</code>. <b>This is the recommended way to use Dynomix!</b>
 				</p>
 				<p>
-					If Companion <em>isn't</em> running on your computer (but is on another computer <strong>on your local network that you can access</strong>, you'll need to get a little more advanced.
+					If Companion <em>isn't</em> running on your computer (but is on another computer <b>on your local network that you can access</b>, you'll need to get a little more advanced.
 					Right now, <b>Dynomix</b> doesn't support that out of the box! You'll need to enable the
 					<a href="https://github.com/bitfocus/companion/blob/main/docs/3_config/settings/https_web_server.md">HTTPS Web Server</a> in your Companion settings to even have a chance, 
 					because browsers (wisely) won't connect to <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Mixed_content">mixed-security content</a>.
+					<br>
 					(This website is secure, and by default the Companion interface and API are not, because they aren't actually on the Internet, but this website tries to talk to them... you see the problem?).
 				</p>
 			</details>
-			<details open>
-				<summary>What's my Companion port</summary>
+			<details>
+				<summary>What's my <b>Companion port</b>?</summary>
 				<p>
 					The port that Companion is listening on. Companion defaults to
-					<code>8000</code>, but you can check the Companion program to be sure.
+					<code>8000</code>, but check your Companion program to be sure.
 				</p>
 			</details>
-			<details open>
-				<summary>vMix name</summary>
+			<details>
+				<summary>What's my <b>vMix name</b>?</summary>
 				<p>
 					The name of the vMix connection
 					<em>inside of Companion</em>. Check the <code>Connections</code> page
 					of the Companion Web Interface!
 				</p>
 			</details>
+			<details>
+				<summary>Something isn't working/I need more help!</summary>
+				<p>
+					Please head to <a href="https://github.com/bost-ty/dynomix">the Dynomix GitHub</a> to learn more, see the code, or file an Issue to receive help.
+				</p>
+			</details>
 		</section>
-		<!-- Remember kids, bundle and minify your scripts. -->
+		<!-- Remember kids, bundle and minify your scripts. Or don't. -->
 		<script src="./vendor/purify.min.js"></script>
 		<script src="./main.js"></script>
 	</body>
