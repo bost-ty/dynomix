@@ -65,16 +65,22 @@
 		<section id="help">
 			<h2>Need help?</h2>
 			<details open>
-				<summary>Companion IP</summary>
+				<summary>What's my <code>Companion IP</code>?</summary>
 				<p>
 					The IP address of the computer you're using Companion on. You can get
-					this from the Companion program running on the computer. If it's this
-					computer, you can write
-					<code>localhost</code>.
+					this from the Companion program running on the computer. If it's your computer, set Companion to (the default) "All Interfaces" and use
+					<code>localhost</code> or <code>127.0.0.1</code>. This is the recommended way to use Dynomix!
+				</p>
+				<p>
+					If Companion <em>isn't</em> running on your computer (but is on another computer <strong>on your local network that you can access</strong>, you'll need to get a little more advanced.
+					Right now, <b>Dynomix</b> doesn't support that out of the box! You'll need to enable the
+					<a href="https://github.com/bitfocus/companion/blob/main/docs/3_config/settings/https_web_server.md">HTTPS Web Server</a> in your Companion settings to even have a chance, 
+					because browsers (wisely) won't connect to <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Mixed_content">mixed-security content</a>.
+					(This website is secure, and by default the Companion interface and API are not, because they aren't actually on the Internet, but this website tries to talk to them... you see the problem?).
 				</p>
 			</details>
 			<details open>
-				<summary>Companion port</summary>
+				<summary>What's my Companion port</summary>
 				<p>
 					The port that Companion is listening on. Companion defaults to
 					<code>8000</code>, but you can check the Companion program to be sure.
