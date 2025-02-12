@@ -63,7 +63,7 @@ ol#inputList li {
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
-	justify-content: space-evenly;
+	/* justify-content: space-evenly; */
 	padding: 0.5rem;
 	padding-top: 1rem;
 
@@ -73,23 +73,6 @@ ol#inputList li {
 		padding: 0.2rem;
 		margin-bottom: 0.2rem;
 	}
-}
-
-ol#inputList li label {
-	font-size: 1rem;
-	text-align: left;
-	color: var(--text-bright);
-	min-width: 0;
-	text-overflow: ellipsis;
-	overflow: hidden;
-	white-space: nowrap;
-	flex: 100%;
-}
-
-ol#inputList li input[type="text"] {
-	font-family: monospace;
-	opacity: 0.7;
-	max-width: 10ch;
 }
 
 ol#inputList li button {
@@ -102,6 +85,28 @@ ol#inputList li button {
 	&.copied {
 		background-color: var(--border);
 	}
+}
+
+ol#inputList li label {
+	font-size: 1rem;
+	text-align: left;
+	color: var(--text-bright);
+	min-width: 20ch;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	flex: 1 0;
+}
+
+ol#inputList li input[type="text"] {
+	font-family: monospace;
+	opacity: 0.7;
+	min-width: 10ch;
+	text-align: center;
+	flex: 0.8 1;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
 }
 
 div#toast {
