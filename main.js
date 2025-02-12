@@ -97,25 +97,19 @@ async function fetchInputs(ip, port, instance, timeoutMs = 5000) {
     return data;
 }
 async function handleHttpResponse(response) {
-    try {
-        switch (response.status) {
-            case 200:
-                return await response.json();
-            case 400:
-                throw new Error("400 Bad Request");
-            case 401:
-                throw new Error("401 Unauthorized");
-            case 404:
-                throw new Error("404 Not Found");
-            case 500:
-                throw new Error("500 Internal Server Error");
-            default:
-                throw new Error(`Unexpected status code: ${response.status}`);
-        }
-    }
-    catch (error) {
-        console.error(error);
-        throw error;
+    switch (response.status) {
+        case 200:
+            return await response.json();
+        case 400:
+            throw new Error("400 Bad Request");
+        case 401:
+            throw new Error("401 Unauthorized");
+        case 404:
+            throw new Error("404 Not Found");
+        case 500:
+            throw new Error("500 Internal Server Error");
+        default:
+            throw new Error(`Unexpected status code: ${response.status}`);
     }
 }
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
