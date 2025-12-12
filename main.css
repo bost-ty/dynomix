@@ -1,159 +1,172 @@
-/* Remember kids, don't use `id`s for styling. */
-
 section#heading {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 section#instructions {
-	color: var(--text-muted);
-	text-wrap: balance;
-	text-align: center;
-	padding-bottom: 0.5rem;
+  color: var(--text-muted);
+  text-wrap: balance;
+  text-align: center;
+  padding-bottom: 0.5rem;
 }
 
 section#controls form {
-	display: flex;
-	align-items: stretch center;
-	justify-content: center;
-	/* margin: 0 auto; */
-	flex-flow: row wrap;
-	gap: 0.2rem;
-	& label {
-		text-align: center;
-	}
-	& label input {
-		margin-top: 0.25em;
-		width: clamp(15ch, calc(10ch + 1vw), 40ch);
-	}
-	& button {
-		outline: 1px solid var(--text-muted);
-	}
+  display: flex;
+  align-items: stretch center;
+  justify-content: center;
+  /* margin: 0 auto; */
+  flex-flow: row wrap;
+  gap: 0.2rem;
+  & label {
+    text-align: center;
+  }
+  & label input {
+    margin-top: 0.25em;
+    width: clamp(15ch, calc(10ch + 1vw), 40ch);
+  }
+  & button {
+    outline: 1px solid var(--text-muted);
+  }
 }
 
 section#content {
-	margin: 1rem auto;
-	padding: 3rem;
-	text-align: center;
-	outline: 1px solid var(--text-muted);
-	border-radius: 0.2rem;
-	transition: filter 200ms ease;
+  margin: 1rem auto;
+  padding: 3rem;
+  text-align: center;
+  outline: 1px solid var(--text-muted);
+  border-radius: 0.2rem;
+  transition: filter 200ms ease;
 
-	&.populated {
-		padding: 0rem;
-		width: 100%;
-	}
-	&.data-updated {
-		filter: brightness(50%);
-	}
+  &.populated {
+    padding: 0rem;
+    width: 100%;
+  }
+  &.data-updated {
+    filter: brightness(50%);
+  }
 }
 
 ol#inputList {
-	padding: 0;
-	width: 100%;
+  padding: 0;
+  width: 100%;
 }
 
 ol#inputList li:nth-child(odd) {
-	background-color: rgba(10, 10, 10, 0.1);
+  background-color: rgba(10, 10, 10, 0.1);
 }
 
 ol#inputList li {
-	display: flex;
-	align-items: center;
-	gap: 0.5rem;
-	/* justify-content: space-evenly; */
-	padding: 0.5rem;
-	padding-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  /* justify-content: space-evenly; */
+  padding: 0.5rem;
+  padding-top: 1rem;
 
-	& span {
-		font-family: monospace;
-		color: var(--text-muted);
-		padding: 0.2rem;
-		margin-bottom: 0.2rem;
-	}
+  & span {
+    font-family: monospace;
+    color: var(--text-muted);
+    padding: 0.2rem;
+    margin-bottom: 0.2rem;
+  }
 }
 
 ol#inputList li button {
-	transition: filter 500ms ease-out;
+  transition: filter 500ms ease-out;
 
-	&.recently-copied {
-		filter: hue-rotate(180deg) saturate(150%);
-		border-color: rgba(0, 0, 0, 0);
-	}
-	&.copied {
-		background-color: var(--border);
-	}
+  &.recently-copied {
+    filter: hue-rotate(180deg) saturate(150%);
+    border-color: rgba(0, 0, 0, 0);
+  }
+  &.copied {
+    background-color: var(--border);
+  }
 }
 
 ol#inputList li label {
-	font-size: 1rem;
-	text-align: left;
-	color: var(--text-bright);
-	min-width: 20ch;
-	text-overflow: ellipsis;
-	overflow: hidden;
-	white-space: nowrap;
-	flex: 1 0;
+  font-size: 1rem;
+  text-align: left;
+  color: var(--text-bright);
+  min-width: 20ch;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  flex: 1 0;
 }
 
 ol#inputList li input[type="text"] {
-	font-family: monospace;
-	opacity: 0.7;
-	min-width: 10ch;
-	text-align: center;
-	flex: 0.8 1;
-	text-overflow: ellipsis;
-	overflow: hidden;
-	white-space: nowrap;
+  font-family: monospace;
+  opacity: 0.7;
+  min-width: 10ch;
+  text-align: center;
+  flex: 0.8 1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 div#toast {
-	position: fixed;
-	top: 8px;
-	right: 0;
-	background-color: var(--background-alt);
-	padding: 1rem 0 1rem 1rem;
-	border-width: 4px;
-	border-style: solid;
-	border-image: linear-gradient(to left, var(--border) 80%, var(--text-muted) 100%) 1;
-	border-right: none;
-	font-family: monospace;
-	color: var(--text-muted);
-	width: 45ch;
-	transform: translateX(100%);
-	will-change: transform, border-image;
-	transition: transform ease-in 500ms, border-image ease 2500ms;
-	z-index: 1;
-	&.on {
-		transform: translateX(0%);
-		transition: transform ease-out 500ms;
-		animation-name: border-loop;
-		animation-duration: 750ms;
-		animation-iteration-count: infinite;
-		animation-timing-function: ease-in;
-		animation-direction: alternate;
-	}
-	@media (prefers-reduced-motion) {
-		transform: translateX(0%);
-		border-image: none;
-		border-color: var(--border);
-		&.on {
-			animation: none;
-			border-image: none;
-			border-color: var(--border);
-		}
-	}
+  position: fixed;
+  top: 8px;
+  right: 0;
+  background-color: var(--background-alt);
+  padding: 1rem 0 1rem 1rem;
+  border-width: 4px;
+  border-style: solid;
+  border-image: linear-gradient(
+      to left,
+      var(--border) 80%,
+      var(--text-muted) 100%
+    )
+    1;
+  border-right: none;
+  font-family: monospace;
+  color: var(--text-muted);
+  width: 45ch;
+  transform: translateX(100%);
+  will-change: transform, border-image;
+  transition:
+    transform ease-in 500ms,
+    border-image ease 2500ms;
+  z-index: 1;
+  &.on {
+    transform: translateX(0%);
+    transition: transform ease-out 500ms;
+    animation-name: border-loop;
+    animation-duration: 750ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in;
+    animation-direction: alternate;
+  }
+  @media (prefers-reduced-motion) {
+    transform: translateX(0%);
+    border-image: none;
+    border-color: var(--border);
+    &.on {
+      animation: none;
+      border-image: none;
+      border-color: var(--border);
+    }
+  }
 }
 
 @keyframes border-loop {
-	0% {
-		border-image: linear-gradient(to left, var(--border) 80%, var(--text-muted) 100%)
-			1;
-	}
-	100% {
-		border-image: linear-gradient(to left, var(--text-muted) 20%, var(--border) 100%)
-			1;
-	}
+  0% {
+    border-image: linear-gradient(
+        to left,
+        var(--border) 80%,
+        var(--text-muted) 100%
+      )
+      1;
+  }
+  100% {
+    border-image: linear-gradient(
+        to left,
+        var(--text-muted) 20%,
+        var(--border) 100%
+      )
+      1;
+  }
 }
