@@ -45,7 +45,8 @@ function renderData(content, data) {
     content.innerHTML = "";
     content.appendChild(ol);
     if (!(data.length > 0)) {
-        content.textContent = "No inputs found. Is vMix open and connected to Companion?";
+        content.textContent =
+            "No inputs found. Is vMix open and connected to Companion?";
         return data;
     }
     content.classList.add("data-updated");
