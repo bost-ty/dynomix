@@ -10,6 +10,8 @@ section#instructions {
   text-wrap: balance;
   text-align: center;
   padding-bottom: 0.5rem;
+  max-width: 40rem;
+  margin-inline: auto;
 }
 
 section#controls form {
