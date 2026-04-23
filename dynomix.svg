@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%" style="border-radius: 50%">
+  <defs>
+    <radialGradient id="bgGrad" cx="50%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="#1B1230" />
+      <stop offset="60%" stop-color="#0A0515" />
+      <stop offset="100%" stop-color="#05020A" />
+    </radialGradient>
+
+    <linearGradient id="bananaGrad" x1="0%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#FFF2A8" />
+      <stop offset="40%" stop-color="#FFD700" />
+      <stop offset="85%" stop-color="#E5A900" />
+      <stop offset="100%" stop-color="#B87300" />
+    </linearGradient>
+
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="impactGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="15" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="8" dy="12" stdDeviation="8" flood-color="#000000" flood-opacity="0.8" />
+    </filter>
+  </defs>
+
+  <rect width="500" height="500" fill="url(#bgGrad)" />
+
+  <g fill="#161024" opacity="0.8">
+    <circle cx="50" cy="-20" r="80" />
+    <circle cx="150" cy="10" r="90" />
+    <circle cx="270" cy="-30" r="120" />
+    <circle cx="380" cy="15" r="80" />
+    <circle cx="480" cy="-10" r="70" />
+  </g>
+  <g fill="#1D162E" opacity="0.9">
+    <circle cx="100" cy="-30" r="70" />
+    <circle cx="220" cy="5" r="85" />
+    <circle cx="330" cy="-10" r="100" />
+    <circle cx="430" cy="5" r="60" />
+  </g>
+
+  <g fill="none" stroke="#00FFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.6" filter="url(#glow)">
+    <polyline points="200,80 140,105 160,150 110,180" />
+    <polyline points="270,150 340,135 370,180 340,230" />
+    <polyline points="210,220 150,235 170,280" />
+    <polyline points="280,270 330,285 340,310" />
+  </g>
+
+  <g filter="url(#shadow)">
+    <path d="M 85,340 L 105,350 L 95,365 L 75,355 Z" fill="#3D2B1F" />
+    
+    <path d="M 390,248 L 405,242 L 410,255 L 398,260 Z" fill="#3D2B1F" />
+
+    <path d="M 100,350 C 150,450 350,400 400,250 C 320,330 200,370 100,350 Z" fill="url(#bananaGrad)" />
+
+    <path d="M 105,352 C 160,410 320,375 395,255" fill="none" stroke="#C88A00" stroke-width="3" opacity="0.7" />
+    <path d="M 100,350 C 150,380 250,365 310,315" fill="none" stroke="#FFE266" stroke-width="2" opacity="0.6" />
+
+    <ellipse cx="180" cy="375" rx="5" ry="3" fill="#8B5A00" opacity="0.5" transform="rotate(-15 180 375)" />
+    <ellipse cx="230" cy="400" rx="4" ry="2" fill="#8B5A00" opacity="0.4" transform="rotate(-5 230 400)" />
+    <ellipse cx="340" cy="310" rx="6" ry="3" fill="#8B5A00" opacity="0.5" transform="rotate(25 340 310)" />
+    <ellipse cx="130" cy="365" rx="3" ry="2" fill="#8B5A00" opacity="0.6" transform="rotate(-30 130 365)" />
+  </g>
+
+  <path d="M 210,350 Q 260,335 300,323" fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" filter="url(#glow)" />
+
+  <g fill="none" stroke-linejoin="miter" stroke-miterlimit="10">
+    <polyline points="260,-10 200,80 270,150 210,220 280,270 258,335" stroke="#00FFFF" stroke-width="12" filter="url(#glow)" opacity="0.8" />
+    <polyline points="260,-10 200,80 270,150 210,220 280,270 258,335" stroke="#80FFFF" stroke-width="6" filter="url(#glow)" />
+    <polyline points="260,-10 200,80 270,150 210,220 280,270 258,335" stroke="#FFFFFF" stroke-width="3" />
+  </g>
+
+  <g transform="translate(258, 335)">
+    <circle cx="0" cy="0" r="25" fill="#00FFFF" filter="url(#impactGlow)" opacity="0.9" />
+    <circle cx="0" cy="0" r="10" fill="#FFFFFF" filter="url(#glow)" />
+    
+    <g stroke="#FFFFFF" stroke-linecap="round" filter="url(#glow)">
+      <line x1="0" y1="0" x2="-40" y2="-30" stroke-width="3" />
+      <line x1="0" y1="0" x2="45" y2="-20" stroke-width="3" />
+      <line x1="0" y1="0" x2="-25" y2="25" stroke-width="2" />
+      <line x1="0" y1="0" x2="35" y2="30" stroke-width="2" />
+      <line x1="0" y1="0" x2="5" y2="-50" stroke-width="3" />
+      <line x1="0" y1="0" x2="-10" y2="40" stroke-width="2" />
+      
+      <line x1="-30" y1="-22" x2="-60" y2="-40" stroke-width="1.5" stroke="#00FFFF" />
+      <line x1="35" y1="-15" x2="65" y2="-25" stroke-width="1.5" stroke="#00FFFF" />
+      <line x1="-15" y1="18" x2="-35" y2="45" stroke-width="1" stroke="#00FFFF" />
+      <line x1="25" y1="20" x2="50" y2="45" stroke-width="1" stroke="#00FFFF" />
+      <line x1="4" y1="-35" x2="10" y2="-70" stroke-width="1.5" stroke="#00FFFF" />
+    </g>
+
+    <circle cx="-35" cy="-15" r="2" fill="#FFFFFF" />
+    <circle cx="40" cy="-35" r="1.5" fill="#FFFFFF" />
+    <circle cx="-20" cy="35" r="2.5" fill="#00FFFF" />
+    <circle cx="30" cy="25" r="1.5" fill="#00FFFF" />
+    <circle cx="-5" cy="-60" r="2" fill="#FFFFFF" />
+    <circle cx="-50" cy="10" r="1.5" fill="#00FFFF" />
+  </g>
+</svg>
+

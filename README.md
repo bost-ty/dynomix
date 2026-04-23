@@ -1,10 +1,12 @@
 # Dynomix
 
-It's the wave of the future.
+[bost-ty](https://github.com/bost-ty) | 2026
 
-Dynomix is a handy utility for interacting with the Companion module for vMix.
+_It's the wave of the future!_
 
-Just open the page, enter your local Companion & vMix instance information, and enjoy easy access to the unique input ID for every input in your currently active project.
+Dynomix is a handy utility for interacting with the Bitfocus Companion module for vMix.
+
+Open the page, enter your local Companion & vMix instance information, and enjoy easy access to the unique input ID for every input in your currently active project.
 
 ## Why?
 
@@ -18,9 +20,7 @@ Please open an Issue in [the Dynomix GitHub repository](https://github.com/bost-
 ## Developing
 
 1. Clone this repo.
-2. `cd dynomix`, `npm i`
-3. `npx tsc --watch`
-4. Edit `main.ts` as you like.
-5. Serve `index.html` however you prefer (i.e. `npx http-serve`)
-
-- bost-ty, 2024
+2. Move into the directory: `cd dynomix`
+3. Install dependencies: `npm install`
+4. Run dev server & TypeScript compilation: `npm run dev`
+5. Edit files as necessary.

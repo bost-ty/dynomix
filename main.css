@@ -1,3 +1,7 @@
+h1 {
+  font-family: monospace;
+}
+
 section#heading {
   display: flex;
   justify-content: center;
@@ -18,7 +22,6 @@ section#controls form {
   display: flex;
   align-items: stretch center;
   justify-content: center;
-  /* margin: 0 auto; */
   flex-flow: row wrap;
   gap: 0.2rem;
   & label {
@@ -37,13 +40,14 @@ section#content {
   margin: 1rem auto;
   padding: 3rem;
   text-align: center;
-  outline: 1px solid var(--text-muted);
   border-radius: 0.2rem;
+  outline: 2px solid transparent;
   transition: filter 200ms ease;
 
   &.populated {
     padding: 0rem;
     width: 100%;
+    outline: 2px solid var(--text-muted);
   }
   &.data-updated {
     filter: brightness(50%);
@@ -63,9 +67,15 @@ ol#inputList li {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  /* justify-content: space-evenly; */
   padding: 0.5rem;
   padding-top: 1rem;
+  opacity: 1;
+  --delay-ms: min(calc(var(--input-number, 0) * 100ms), 3000ms);
+  transition: opacity var(--delay-ms) ease-in-out;
+
+  @starting-style {
+    opacity: 0;
+  }
 
   & span {
     font-family: monospace;
@@ -76,7 +86,7 @@ ol#inputList li {
 }
 
 ol#inputList li button {
-  transition: filter 500ms ease-out;
+  transition: filter 350ms ease-out;
 
   &.recently-copied {
     filter: hue-rotate(180deg) saturate(150%);
@@ -84,6 +94,9 @@ ol#inputList li button {
   }
   &.copied {
     background-color: var(--border);
+    border-color: var(--button-base);
+    &:hover {
+    }
   }
 }
 
@@ -91,31 +104,41 @@ ol#inputList li label {
   font-size: 1rem;
   text-align: left;
   color: var(--text-bright);
-  min-width: 20ch;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  flex: 1 0;
+  min-width: 6ch;
+  flex: 1 1;
 }
 
 ol#inputList li input[type="text"] {
   font-family: monospace;
   opacity: 0.7;
-  min-width: 10ch;
+  min-width: 6ch;
+  max-width: 38ch;
   text-align: center;
-  flex: 0.8 1;
+  flex: 1 1;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 }
 
-div#toast {
+button#toast {
+  & > div#toast-content {
+    & > div:first-of-type {
+      color: var(--text-muted);
+    }
+  }
   position: fixed;
-  top: 8px;
+  font-size: 1rem;
+  margin: 0;
+  bottom: 0.4rem;
+  left: 0;
   right: 0;
-  background-color: var(--background-alt);
-  padding: 1rem 0 1rem 1rem;
-  border-width: 4px;
+  margin-inline: auto;
+  padding: 0.5rem;
+  background-color: var(--button-base);
+  border-width: 0.2rem;
   border-style: solid;
   border-image: linear-gradient(
       to left,
@@ -123,25 +146,31 @@ div#toast {
       var(--text-muted) 100%
     )
     1;
-  border-right: none;
   font-family: monospace;
   color: var(--text-muted);
-  width: 45ch;
-  transform: translateX(100%);
-  will-change: transform, border-image;
+  width: calc(100dvw - 4rem);
+  max-width: 50ch;
+  transform: translateY(200%);
+  opacity: 0;
   transition:
-    transform ease-in 500ms,
-    border-image ease 2500ms;
-  z-index: 1;
+    opacity ease 300ms,
+    transform ease 300ms,
+    background-color 200ms,
+    color linear 300ms,
+    border-image linear 2500ms;
+  z-index: 100;
+
   &.on {
-    transform: translateX(0%);
-    transition: transform ease-out 500ms;
+    opacity: 1;
+    transform: translateY(0%);
     animation-name: border-loop;
     animation-duration: 750ms;
     animation-iteration-count: infinite;
     animation-timing-function: ease-in;
     animation-direction: alternate;
+    color: var(--text-bright);
   }
+
   @media (prefers-reduced-motion) {
     transform: translateX(0%);
     border-image: none;
