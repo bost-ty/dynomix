@@ -42,14 +42,13 @@ configForm.addEventListener("submit", async (e) => {
   try {
     const data = await fetchInputs(ip, port, instance, 2000);
     renderedData = renderData(content, data);
-  } catch (error) {
-    if (error instanceof TypeError) {
+  } catch (error: unknown) {
+    if (error) {
       content.textContent =
         "Couldn't retrieve inputs. Please double-check the Companion and vMix information, and make sure that vMix is connected to Companion.";
     }
     if (error) content.textContent = String(error);
     console.error(error);
-    throw error;
   }
 });
 
@@ -118,7 +117,7 @@ async function fetchInputs(
   instance: string,
   timeoutMs: number = 5000,
 ) {
-  if (!ip || !port || !instance) throw new Error(`Missing data`);
+  if (!ip || !port || !instance) throw new Error(`Missing form data`);
   const response = await fetch(
     `http://${ip}:${port}/instance/${instance}/inputs`,
     {
