@@ -19,7 +19,7 @@
     <section id="controls">
       <form autocomplete="off" id="inputs">
         <label
-          >Companion IP<input
+          >Companion IP/Host<input
             type="text"
             name="ip"
             id="ip"
@@ -87,19 +87,19 @@
           <b>Dynomix</b> doesn't support that out of the box! You'll need to
           enable the
           <a
-            href="https://github.com/bitfocus/companion/blob/main/docs/3_config/settings/https_web_server.md"
+            href="https://companion.free/user-guide/v4.3/config/settings/#https-web-server"
             >HTTPS Web Server</a
           >
-          in your Companion settings to even have a chance, because browsers
-          (wisely) won't connect to
+          in your Companion settings because the web browser (wisely) won't
+          connect to <em>insecure</em> content from a <em>secure</em> origin (
           <a
             href="https://developer.mozilla.org/en-US/docs/Web/Security/Mixed_content"
             >mixed-security content</a
-          >.
-          <br />
-          (This website is secure, and by default the Companion interface and
-          API are not, because they aren't actually on the Internet, but this
-          website tries to talk to them... you see the problem?).
+          >)
+        </p>
+        <p>
+          By default the Companion interface/API use HTTP because it does not
+          run on the public Internet. This website is on the public Internet.
         </p>
       </details>
       <details>

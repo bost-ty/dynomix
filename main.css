@@ -1,5 +1,6 @@
 h1 {
   font-family: monospace;
+  letter-spacing: -0.05em;
 }
 
 section#heading {
@@ -70,7 +71,7 @@ ol#inputList li {
   padding: 0.5rem;
   padding-top: 1rem;
   opacity: 1;
-  --delay-ms: min(calc(var(--input-number, 0) * 100ms), 3000ms);
+  --delay-ms: min(calc(var(--input-number, 0) * 100ms), 1500ms);
   transition: opacity var(--delay-ms) ease-in-out;
 
   @starting-style {
