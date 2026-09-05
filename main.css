@@ -29,9 +29,8 @@ section#controls form {
     text-align: center;
   }
   & label input {
-    margin-top: 0.25em;
+    margin-top: 0.25em 0 0 0;
     width: clamp(15ch, calc(10ch + 1vw), 40ch);
-    margin-inline: 0;
   }
   & button {
     outline: 1px solid var(--text-muted);
